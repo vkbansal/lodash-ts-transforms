@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noEmitOnError": true,
+        "outDir": "./",
+        "target": "esnext",
+        "strict": true
+    },
+    "include": ["./src"],
+    "exclude": ["node_modules"]
+}
