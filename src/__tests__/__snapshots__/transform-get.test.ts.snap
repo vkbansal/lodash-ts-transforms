@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transform-get tests array-default-import.ts 1`] = `
+File: array-default-import.ts
+##################### Source code #####################
+  import get from "lodash/get";
+  
+  const foo = {};
+  const baz = 'somekey';
+  
+  const a = get(foo, ['a', 'b', 'c', 'd', 'e']);
+  const b = get(foo, ['a', '0', 'c', '5', 'e']);
+  const c = get(foo, ['a', 0, 'c', 5, 'e']);
+  const d = get(foo, \`a[0].c.[\${baz}].e\`);
+  
+  export { a, b, c, d };
+  
+
+############# TypeScript before transform #############
+  import get from "lodash/get";
+  const foo = {};
+  const baz = "somekey";
+  const a = get(foo, ["a", "b", "c", "d", "e"]);
+  const b = get(foo, ["a", "0", "c", "5", "e"]);
+  const c = get(foo, ["a", 0, "c", 5, "e"]);
+  const d = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c, d };
+  
+
+############# TypeScript after transform ##############
+  import get from "lodash/get";
+  const foo = {};
+  const baz = "somekey";
+  const a = foo && foo.a && foo.a.b && foo.a.b.c && foo.a.b.c.d && foo.a.b.c.d.e;
+  const b = foo && foo.a && foo.a[0] && foo.a[0].c && foo.a[0].c[5] && foo.a[0].c[5].e;
+  const c = foo && foo.a && foo.a[0] && foo.a[0].c && foo.a[0].c[5] && foo.a[0].c[5].e;
+  const d = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c, d };
+`;
+
+exports[`transform-get tests array-named-import.ts 1`] = `
+File: array-named-import.ts
+##################### Source code #####################
+  import { get } from "lodash";
+  
+  const foo = {};
+  const baz = 'somekey';
+  
+  const a = get(foo, ['a', 'b', 'c', 'd', 'e']);
+  const b = get(foo, ['a', '0', 'c', '5', 'e']);
+  const c = get(foo, ['a', 0, 'c', 5, 'e']);
+  const d = get(foo, \`a[0].c.[\${baz}].e\`);
+  
+  export { a, b, c, d };
+  
+
+############# TypeScript before transform #############
+  import { get } from "lodash";
+  const foo = {};
+  const baz = "somekey";
+  const a = get(foo, ["a", "b", "c", "d", "e"]);
+  const b = get(foo, ["a", "0", "c", "5", "e"]);
+  const c = get(foo, ["a", 0, "c", 5, "e"]);
+  const d = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c, d };
+  
+
+############# TypeScript after transform ##############
+  import { get } from "lodash";
+  const foo = {};
+  const baz = "somekey";
+  const a = foo && foo.a && foo.a.b && foo.a.b.c && foo.a.b.c.d && foo.a.b.c.d.e;
+  const b = foo && foo.a && foo.a[0] && foo.a[0].c && foo.a[0].c[5] && foo.a[0].c[5].e;
+  const c = foo && foo.a && foo.a[0] && foo.a[0].c && foo.a[0].c[5] && foo.a[0].c[5].e;
+  const d = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c, d };
+`;
+
+exports[`transform-get tests string-default-import.ts 1`] = `
+File: string-default-import.ts
+##################### Source code #####################
+  import get from "lodash/get";
+  
+  const foo = {};
+  const baz = 'somekey';
+  
+  const a = get(foo, 'a.b.c.d.e');
+  const b = get(foo, 'a[0].c[5].e');
+  const c = get(foo, \`a[0].c.[\${baz}].e\`);
+  
+  export { a, b, c };
+  
+
+############# TypeScript before transform #############
+  import get from "lodash/get";
+  const foo = {};
+  const baz = "somekey";
+  const a = get(foo, "a.b.c.d.e");
+  const b = get(foo, "a[0].c[5].e");
+  const c = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c };
+  
+
+############# TypeScript after transform ##############
+  import get from "lodash/get";
+  const foo = {};
+  const baz = "somekey";
+  const a = foo && foo.a && foo.a.b && foo.a.b.c && foo.a.b.c.d && foo.a.b.c.d.e;
+  const b = foo && foo.a && foo.a[0] && foo.a[0].c && foo.a[0].c[5] && foo.a[0].c[5].e;
+  const c = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c };
+`;
+
+exports[`transform-get tests string-named-import.ts 1`] = `
+File: string-named-import.ts
+##################### Source code #####################
+  import { get } from "lodash";
+  
+  const foo = {};
+  const baz = 'somekey';
+  
+  const a = get(foo, 'a.b.c.d.e');
+  const b = get(foo, 'a[0].c[5].e');
+  const c = get(foo, \`a[0].c.[\${baz}].e\`);
+  
+  export { a, b, c };
+  
+
+############# TypeScript before transform #############
+  import { get } from "lodash";
+  const foo = {};
+  const baz = "somekey";
+  const a = get(foo, "a.b.c.d.e");
+  const b = get(foo, "a[0].c[5].e");
+  const c = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c };
+  
+
+############# TypeScript after transform ##############
+  import { get } from "lodash";
+  const foo = {};
+  const baz = "somekey";
+  const a = foo && foo.a && foo.a.b && foo.a.b.c && foo.a.b.c.d && foo.a.b.c.d.e;
+  const b = foo && foo.a && foo.a[0] && foo.a[0].c && foo.a[0].c[5] && foo.a[0].c[5].e;
+  const c = get(foo, \`a[0].c.[\${baz}].e\`);
+  export { a, b, c };
+`;
